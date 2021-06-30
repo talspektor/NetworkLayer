@@ -11,7 +11,9 @@ struct NetworkResponseItem {
     let response: URLResponse?
     let error: Error?
 }
-typealias NetworkRouterCompletion = (_ responseItem: NetworkResponseItem) -> Void
+
+public typealias NetworkRouterCompletion = (_ responseItem: NetworkResponseItem) -> Void
+
 protocol NetworkRouter: class {
     associatedtype EndPoint: EndPointType
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
