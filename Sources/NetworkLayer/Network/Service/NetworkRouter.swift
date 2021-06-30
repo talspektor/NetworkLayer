@@ -6,7 +6,7 @@
 //
 
 import Foundation
-struct NetworkResponseItem {
+public struct NetworkResponseItem {
     let data: Data?
     let response: URLResponse?
     let error: Error?
