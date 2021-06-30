@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ResponseHandler {
+public enum ResponseHandler {
     static func handle(_ responseItem: NetworkResponseItem, completion: (Result<Bool, Error>) -> Void) {
         guard responseItem.error == nil else {
             completion(.failure(responseItem.error!))

@@ -11,6 +11,8 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     private var task: URLSessionTask?
     
+    public init(){}
+    
     func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
         do {
