@@ -8,7 +8,7 @@
 import Foundation
 
 public enum ResponseHandler {
-    static func handle(_ responseItem: NetworkResponseItem, completion: (Result<Bool, Error>) -> Void) {
+    public static func handle(_ responseItem: NetworkResponseItem, completion: (Result<Bool, Error>) -> Void) {
         guard responseItem.error == nil else {
             completion(.failure(responseItem.error!))
             return
@@ -27,7 +27,7 @@ public enum ResponseHandler {
         }
     }
     
-    static func handleWithDecoding<T: Decodable>(_ type: T.Type, _ responseItem: NetworkResponseItem, completion: (Result<T, Error>) -> Void) {
+    public static func handleWithDecoding<T: Decodable>(_ type: T.Type, _ responseItem: NetworkResponseItem, completion: (Result<T, Error>) -> Void) {
         guard responseItem.error == nil else {
             debugPrint("\n<<<<< Error: \(responseItem.error!)\n")
             completion(.failure(responseItem.error!))
