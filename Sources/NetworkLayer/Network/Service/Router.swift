@@ -13,7 +13,7 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     public init(){}
     
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
+    public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
         let session = URLSession.shared
         do {
             let request = try RequestMaker.getRequest(from: route)
