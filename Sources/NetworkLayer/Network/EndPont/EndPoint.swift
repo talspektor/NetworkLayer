@@ -7,7 +7,7 @@
 
 import Foundation
 
-protocol EndPointType {
+public protocol EndPointType {
     var baseURL: URL { get }
     var path: String { get }
     var httpMethod: HTTPMethod { get }
@@ -17,7 +17,7 @@ protocol EndPointType {
     var queryParams: QueryParams? { get }
 }
 
-enum HTTPMethod: String {
+public enum HTTPMethod: String {
     case get = "GET"
     case post = "POST"
     case put = "PUT"
@@ -25,11 +25,11 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
-typealias HTTPHeaders = [String: String]
-typealias QueryParams = [String: String]
-typealias Parameters = [String: Any]
+public typealias HTTPHeaders = [String: String]
+public typealias QueryParams = [String: String]
+public typealias Parameters = [String: Any]
 
-enum HTTPTask {
+public enum HTTPTask {
     case request
     
     case requestParametest(bodyParameters: Parameters?, urlParanatars: QueryParams?)

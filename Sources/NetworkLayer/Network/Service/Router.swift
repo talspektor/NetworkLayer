@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Router<EndPoint: EndPointType>: NetworkRouter {
+public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     private var task: URLSessionTask?
     
