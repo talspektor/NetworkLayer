@@ -29,7 +29,7 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
         self.task?.resume()
     }
     
-    func cansel() {
+    public func cansel() {
         self.task?.cancel()
     }
     
