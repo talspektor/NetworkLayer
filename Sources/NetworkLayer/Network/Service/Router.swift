@@ -6,43 +6,51 @@
 //
 
 import Foundation
+import Combine
 
+@available(OSX 10.15, *)
 public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     private var task: URLSessionTask?
+    private var cancelables = Set<AnyCancellable>()
     
     public init(){}
     
-    public func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion) {
-        let session = URLSession.shared
-        do {
-            let request = try RequestMaker.getRequest(from: route)
-            printRequest(request: request)
-            task = session.dataTask(with: request, completionHandler: { [weak self] data, response, error in
-                self?.printResponse(response, data, error)
-                completion(NetworkResponseItem(data: data, response: response, error: error))
-            })
-        } catch {
-            print(">>>>> Error: \(String(describing: error))")
-            completion(NetworkResponseItem(data: nil, response: nil, error: error))
+    public func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivedOn queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<T, Error> {
+        let request = RequestMaker.getRequest(from: route)
+        switch request {
+        case .success(let urlRequest):
+            printRequest(request: urlRequest)
+            
+            return URLSession.DataTaskPublisher(request: urlRequest, session: .shared)
+                .map(\.data)
+                .decode(type: T.self, decoder: JSONDecoder())
+                .mapError { error in
+                    return error
+                    
+                }
+                .receive(on: RunLoop.main)
+                //            .retry(retries)
+                .eraseToAnyPublisher()
+        case .failure(let error):
+            return AnyPublisher(Fail(error: error))
         }
-        self.task?.resume()
     }
     
-    func cansel() {
-        self.task?.cancel()
+    public func cansel() {
+        task?.cancel()
     }
     
     private func printRequest(request: URLRequest) {
-        print("========================")
-        print(">>>>> REQUEST BODY \(String(describing: request.httpBody))")
-        print(">>>>> REQUEST Method \(String(describing: request.httpMethod))")
-        print(">>>>> REQUEST HEADERS \(String(describing: request.allHTTPHeaderFields))")
+        print("========== REQUEST ==============")
+        print(">>>>> BODY: \(String(describing: request.httpBody))")
+        print(">>>>> Method: \(String(describing: request.httpMethod))")
+        print(">>>>> HEADERS: \(String(describing: request.allHTTPHeaderFields))")
         print("========================")
     }
     
     private func printResponse(_ response: URLResponse?, _ data: Data?, _ error: Error?) {
-        print("========================")
+        print("========= Response ===============")
         if let httpResponse = response as? HTTPURLResponse {
             print(">>>>> HTTP STATUS: \(httpResponse.statusCode)")
             

@@ -8,7 +8,7 @@
 import Foundation
 
 enum RequestMaker {
-    static func getRequest(from route: EndPointType) throws -> URLRequest {
+    static func getRequest(from route: EndPointType) -> Result<URLRequest, Error> {
         
         var request = URLRequest(url: route.baseURL.appendingPathComponent(route.path),
                                  cachePolicy: .reloadIgnoringLocalAndRemoteCacheData,
@@ -20,20 +20,20 @@ enum RequestMaker {
             case .request:
                 request.setValue("application/json", forHTTPHeaderField: "Content-Type")
             case .requestParametest(let bodyParameters, let urlParameters):
-
+                
                 try self.configurePrameters(bodyParameters: bodyParameters,
                                             urlParameters: urlParameters,
                                             request: &request)
             case .requestParametersAnyHeaders(let bodyParameters, let urlParameters, let additionalHeaders):
-
+                
                 self.addAdditionalHeaders(additionalHeaders, request: &request)
                 try self.configurePrameters(bodyParameters: bodyParameters,
                                             urlParameters: urlParameters,
                                             request: &request)
             }
-            return request
+            return .success(request)
         } catch {
-            throw error
+            return .failure(error)
         }
     }
     

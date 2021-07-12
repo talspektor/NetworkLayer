@@ -6,16 +6,17 @@
 //
 
 import Foundation
+import Combine
+
 public struct NetworkResponseItem {
     let data: Data?
     let response: URLResponse?
     let error: Error?
 }
 
-public typealias NetworkRouterCompletion = (_ responseItem: NetworkResponseItem) -> Void
-
 protocol NetworkRouter: class {
     associatedtype EndPoint: EndPointType
-    func request(_ route: EndPoint, completion: @escaping NetworkRouterCompletion)
+    @available(OSX 10.15, *)
+    func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivedOn queue: DispatchQueue) -> AnyPublisher<T, Error>
     func cansel()
 }
