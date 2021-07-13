@@ -8,7 +8,6 @@
 import Foundation
 import Combine
 
-@available(OSX 10.15, *)
 public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     private var task: URLSessionTask?
