@@ -17,6 +17,6 @@ public struct NetworkResponseItem {
 protocol NetworkRouter: class {
     associatedtype EndPoint: EndPointType
     @available(OSX 10.15, *)
-    func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivedOn queue: DispatchQueue) -> AnyPublisher<T, Error>
+    func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivOn queue: DispatchQueue) -> AnyPublisher<T, Error>
     func cansel()
 }

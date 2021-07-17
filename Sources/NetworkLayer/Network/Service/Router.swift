@@ -15,7 +15,7 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
     
     public init(){}
     
-    public func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivedOn queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<T, Error> {
+    public func request<T: Decodable>(_ route: EndPoint, type: T.Type, receivOn queue: DispatchQueue = DispatchQueue.main) -> AnyPublisher<T, Error> {
         let request = RequestMaker.getRequest(from: route)
         switch request {
         case .success(let urlRequest):
@@ -28,7 +28,7 @@ public class Router<EndPoint: EndPointType>: NetworkRouter {
                     return error
                     
                 }
-                .receive(on: RunLoop.main)
+                .receive(on: queue)
                 //            .retry(retries)
                 .eraseToAnyPublisher()
         case .failure(let error):
