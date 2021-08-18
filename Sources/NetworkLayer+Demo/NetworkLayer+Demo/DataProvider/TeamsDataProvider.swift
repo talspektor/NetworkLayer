@@ -14,11 +14,11 @@ protocol TeamsDataProvider {
     func fetchFrenchLegue(completion: @escaping (Result<TeamsResult , Error>) -> Void)
 }
 
-class NetworkTeamsDataProvider<Roueter: Router<TeamsEndPoint>>: TeamsDataProvider {
+class NetworkTeamsDataProvider: TeamsDataProvider {
     
-    private let router: Roueter
+    private let router: Router<TeamsEndPoint>
     
-    init(router: Roueter) {
+    init(router: Router<TeamsEndPoint>) {
         self.router = router
     }
     

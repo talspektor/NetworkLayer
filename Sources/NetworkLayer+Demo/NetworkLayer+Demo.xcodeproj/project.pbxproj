@@ -14,12 +14,12 @@
 		43703AD126CBEF34002239F7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 43703ACF26CBEF34002239F7 /* LaunchScreen.storyboard */; };
 		43703ADC26CBEF34002239F7 /* NetworkLayer_DemoTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703ADB26CBEF34002239F7 /* NetworkLayer_DemoTests.swift */; };
 		43703AE726CBEF34002239F7 /* NetworkLayer_DemoUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703AE626CBEF34002239F7 /* NetworkLayer_DemoUITests.swift */; };
-		43703AF626CBEF56002239F7 /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 43703AF526CBEF56002239F7 /* NetworkLayer */; };
 		43703AF926CCC670002239F7 /* TeamsDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703AF826CCC670002239F7 /* TeamsDataProvider.swift */; };
 		43703AFB26CCC68D002239F7 /* TeamsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703AFA26CCC68D002239F7 /* TeamsEndPoint.swift */; };
 		43703AFE26CCCAD5002239F7 /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703AFD26CCCAD5002239F7 /* Team.swift */; };
 		43703B0126CCCEB4002239F7 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703B0026CCCEB4002239F7 /* ViewModel.swift */; };
 		43703B0326CCD55C002239F7 /* AppController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43703B0226CCD55C002239F7 /* AppController.swift */; };
+		43703B0A26CCE55F002239F7 /* NetworkLayer in Frameworks */ = {isa = PBXBuildFile; productRef = 43703B0926CCE55F002239F7 /* NetworkLayer */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +65,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				43703AF626CBEF56002239F7 /* NetworkLayer in Frameworks */,
+				43703B0A26CCE55F002239F7 /* NetworkLayer in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -207,7 +207,7 @@
 			);
 			name = "NetworkLayer+Demo";
 			packageProductDependencies = (
-				43703AF526CBEF56002239F7 /* NetworkLayer */,
+				43703B0926CCE55F002239F7 /* NetworkLayer */,
 			);
 			productName = "NetworkLayer+Demo";
 			productReference = 43703AC126CBEF32002239F7 /* NetworkLayer+Demo.app */;
@@ -281,7 +281,7 @@
 			);
 			mainGroup = 43703AB826CBEF32002239F7;
 			packageReferences = (
-				43703AF426CBEF56002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */,
+				43703B0826CCE55F002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */,
 			);
 			productRefGroup = 43703AC226CBEF32002239F7 /* Products */;
 			projectDirPath = "";
@@ -653,20 +653,20 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		43703AF426CBEF56002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */ = {
+		43703B0826CCE55F002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/talspektor/NetworkLayer.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.1;
+				minimumVersion = 1.0.2;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		43703AF526CBEF56002239F7 /* NetworkLayer */ = {
+		43703B0926CCE55F002239F7 /* NetworkLayer */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 43703AF426CBEF56002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */;
+			package = 43703B0826CCE55F002239F7 /* XCRemoteSwiftPackageReference "NetworkLayer" */;
 			productName = NetworkLayer;
 		};
 /* End XCSwiftPackageProductDependency section */
